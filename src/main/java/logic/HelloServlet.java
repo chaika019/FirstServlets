@@ -49,14 +49,14 @@ public class HelloServlet extends HttpServlet {
 
 
 //----------------------------Счетчик-----------------------------------
-//        Integer count = (Integer)session.getAttribute("count");
-//
-//        if (count == null) {
-//            session.setAttribute("count", 1);
-//            count = 1;
-//        } else {
-//            session.setAttribute("count", count + 1);
-//        }
+        Integer count = (Integer)session.getAttribute("count");
+
+        if (count == null) {
+            session.setAttribute("count", 1);
+            count = 1;
+        } else {
+            session.setAttribute("count", count + 1);
+        }
 //----------------------------------------------------------------------
 
 
@@ -67,15 +67,15 @@ public class HelloServlet extends HttpServlet {
 //        if (name == null) name = "Yagan";
 //        if (surname == null) surname = "Don";
 
-//        PrintWriter out = response.getWriter();
-//        out.println("<html><body>");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
 //        out.println("<h1>" + surname + " " + name + "</h1>");
-//        out.println("<h2>Ur count is: " + count + "</h2>");
+        out.println("<h2>Ur count is: " + count + "</h2>");
 //        out.println("<p>Click <a href=\"" + request.getContextPath() + "/secondpage\">Second Servlet</a></p>");
-//        out.println("</body></html>");
+        out.println("</body></html>");
 
 
-        getServletContext().getRequestDispatcher("/showCart.jsp").forward(request, response);
+//        getServletContext().getRequestDispatcher("/showCart.jsp").forward(request, response);
         //        response.sendRedirect(request.getContextPath() + "/secondpage");
         //        response.sendRedirect(request.getContextPath() + "/secondpage");
     }

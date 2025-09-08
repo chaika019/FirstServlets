@@ -3,4 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+<!--    <servlet>-->
+<!--        <servlet-name>SetCookiesServlet</servlet-name>-->
+<!--        <servlet-class>Cookies.SetCookiesServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>SetCookiesServlet</servlet-name>-->
+<!--        <url-pattern>/setcookiesservlet</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>GetCookiesServlet</servlet-name>-->
+<!--        <servlet-class>Cookies.GetCookiesServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>GetCookiesServlet</servlet-name>-->
+<!--        <url-pattern>/getcookiesservlet</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>DeleteCookiesServlet</servlet-name>-->
+<!--        <servlet-class>Cookies.DeleteCookiesServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DeleteCookiesServlet</servlet-name>-->
+<!--        <url-pattern>/deletecookiesservlet</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>

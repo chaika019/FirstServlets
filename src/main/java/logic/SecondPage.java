@@ -1,6 +1,5 @@
 package logic;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +12,7 @@ import java.io.PrintWriter;
 @WebServlet("/secondpage")
 public class SecondPage extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
@@ -22,8 +21,8 @@ public class SecondPage extends HttpServlet {
             out.println("<h2>Hello</h2>");
             out.println("</body></html>");
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+//            dispatcher.forward(request, response);
         } finally {
             if (out != null) {
                 out.close();
