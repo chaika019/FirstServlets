@@ -23,7 +23,7 @@ public final class ConnectionManager {
     private static void initConnectionPool() {
         String poolSize = PropertiesUtil.get("db.pool.size");
         int size = poolSize == null ? DEFAULT_POOL_SIZE : Integer.parseInt(poolSize);
-        pool = new ArrayBlockingQueue(size);
+        pool = new ArrayBlockingQueue<>(size);
         for (int i = 0; i < size; i++) {
             Connection conn = open();
             var proxyConnection = (Connection) Proxy.newProxyInstance(ConnectionManager.class.getClassLoader(),
