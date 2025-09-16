@@ -9,17 +9,29 @@ import java.sql.SQLException;
 public class JdbcRunner {
     public static void main(String[] args) throws SQLException {
         var ticketDao = TicketDao.getInstance();
-        Ticket ticket = new Ticket();
-        ticket.setPassport_number("BAMBAMBAM");
-        ticket.setPassenger_name("Kizaru");
-        ticket.setFlight_id(5L);
-        ticket.setSeat_number("C2ads");
-        ticket.setCost(BigDecimal.valueOf(170.00));
+
+        Ticket ticket = ticketDao.findById(5L).get();
+        System.out.println(ticket);
+
+//        System.out.println(ticketDao.findById(16L)); //Тут 16 id нет и выдает ошибку при использовании .get()
+        ticket.setSeat_number("546B");
+        System.out.println(ticketDao.update(ticket));
+        System.out.println(ticket);
 
 
-        System.out.println(ticketDao.save(ticket));
 
-        System.out.println(ticketDao.delete(16L));
+
+//        Ticket ticket = new Ticket();
+//        ticket.setPassport_number("BAMBAMBAM");
+//        ticket.setPassenger_name("Kizaru");
+//        ticket.setFlight_id(5L);
+//        ticket.setSeat_number("C2ads");
+//        ticket.setCost(BigDecimal.valueOf(170.00));
+//
+//
+//        System.out.println(ticketDao.save(ticket));
+//
+//        System.out.println(ticketDao.delete(16L));
 
 //        String sql = """
 //                SELECT * FROM employee
@@ -27,7 +39,7 @@ public class JdbcRunner {
 //
 //        try(var connection = ConnectionManager.get();
 //        var statement = connection.createStatement()) {
-////            System.out.println(statement.executeUpdate(sql));
+//            System.out.println(statement.executeUpdate(sql));
 //            statement.setFetchSize(2);
 //            statement.setMaxRows(2);
 //            statement.setQueryTimeout(1);
