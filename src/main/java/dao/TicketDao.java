@@ -1,5 +1,6 @@
 package dao;
 
+import dto.TicketFilter;
 import entity.Ticket;
 import exception.DaoException;
 import utils.ConnectionManager;
@@ -11,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TicketDao {
     private final static TicketDao INSTANCE = new TicketDao();
@@ -50,6 +52,43 @@ public class TicketDao {
             WHERE id = ?
             """;
 
+
+    public List<Ticket> findAll(TicketFilter filter) {
+        List<Object> params = new ArrayList<>();
+        List<String> whereSql = new ArrayList<>();
+        if (filter.passanger_name() != null) {
+            params.add(filter.passanger_name());
+            whereSql.add("passenger_name=?");
+        }
+        if (filter.seat_number() != null) {
+            params.add("%" + filter.seat_number() + "%");
+            whereSql.add("seat_number like ?");
+        }
+        params.add(filter.limit());
+        params.add(filter.offset());
+        var where = whereSql.stream().collect(Collectors.joining(
+                " AND ",
+                params.size() > 2 ? " WHERE " : " ",
+                " LIMIT ? OFFSET ?"
+        ));
+        String sql = FIND_ALL_SQL + where ;
+        try (var connection = ConnectionManager.get();
+             var statement = connection.prepareStatement(sql)) {
+            List<Ticket> tickets = new ArrayList<>();
+            for (int i = 0; i < params.size(); i++) {
+                statement.setObject(i + 1, params.get(i));
+            }
+            var result = statement.executeQuery();
+            while (result.next()) {
+                tickets.add(
+                        getTicket(result)
+                );
+            }
+            return tickets;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
 
     public List<Ticket> findAll() {
         try (var connection = ConnectionManager.get();

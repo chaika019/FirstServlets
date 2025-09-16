@@ -1,4 +1,5 @@
 import dao.TicketDao;
+import dto.TicketFilter;
 import entity.Ticket;
 import utils.ConnectionManager;
 
@@ -9,14 +10,20 @@ import java.sql.SQLException;
 public class JdbcRunner {
     public static void main(String[] args) throws SQLException {
         var ticketDao = TicketDao.getInstance();
+        var filter = new TicketFilter(null, null, 10, 2);
+        System.out.println(ticketDao.findAll(filter));
 
-        Ticket ticket = ticketDao.findById(5L).get();
-        System.out.println(ticket);
+
+
+
+//        Ticket ticket = ticketDao.findById(5L).get();
+//        System.out.println(ticket);
 
 //        System.out.println(ticketDao.findById(16L)); //Тут 16 id нет и выдает ошибку при использовании .get()
-        ticket.setSeat_number("546B");
-        System.out.println(ticketDao.update(ticket));
-        System.out.println(ticket);
+//        ticket.setSeat_number("546B");
+//        System.out.println(ticketDao.update(ticket));
+//        System.out.println(ticket);
+
 
 
 
