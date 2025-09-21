@@ -1,25 +1,24 @@
 package entity;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Ticket {
     private Long id;
     private String passport_number;
     private String passenger_name;
-    private Long flight_id;
+    private Flight flight;
     private String seat_number;
     private BigDecimal cost;
 
     public Ticket() {
     }
 
-    public Ticket(Long id, String passport_number, String passenger_name, Long flight_id, String seat_number, BigDecimal  cost) {
+    public Ticket(Long id, String passport_number, String passenger_name, Flight flight_id, String seat_number, BigDecimal  cost) {
         this.id = id;
         this.passport_number = passport_number;
         this.passenger_name = passenger_name;
-        this.flight_id = flight_id;
+        this.flight = flight_id;
         this.seat_number = seat_number;
         this.cost = cost;
     }
@@ -48,12 +47,12 @@ public class Ticket {
         this.passenger_name = passenger_name;
     }
 
-    public Long getFlight_id() {
-        return flight_id;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlight_id(Long flight_id) {
-        this.flight_id = flight_id;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
     public String getSeat_number() {
@@ -76,12 +75,12 @@ public class Ticket {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Objects.equals(id, ticket.id) && Objects.equals(passport_number, ticket.passport_number) && Objects.equals(passenger_name, ticket.passenger_name) && Objects.equals(flight_id, ticket.flight_id) && Objects.equals(seat_number, ticket.seat_number) && Objects.equals(cost, ticket.cost);
+        return Objects.equals(id, ticket.id) && Objects.equals(passport_number, ticket.passport_number) && Objects.equals(passenger_name, ticket.passenger_name) && Objects.equals(flight, ticket.flight) && Objects.equals(seat_number, ticket.seat_number) && Objects.equals(cost, ticket.cost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, passport_number, passenger_name, flight_id, seat_number, cost);
+        return Objects.hash(id, passport_number, passenger_name, flight, seat_number, cost);
     }
 
     @Override
@@ -90,7 +89,7 @@ public class Ticket {
                "id=" + id +
                ", passport_number='" + passport_number + '\'' +
                ", passenger_name='" + passenger_name + '\'' +
-               ", flight_id=" + flight_id +
+               ", flight_id=" + flight +
                ", seat_number='" + seat_number + '\'' +
                ", cost=" + cost +
                '}';

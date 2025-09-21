@@ -1,3 +1,4 @@
+import dao.FlightDao;
 import dao.TicketDao;
 import dto.TicketFilter;
 import entity.Ticket;
@@ -10,9 +11,19 @@ import java.sql.SQLException;
 public class JdbcRunner {
     public static void main(String[] args) throws SQLException {
         var ticketDao = TicketDao.getInstance();
-        var filter = new TicketFilter(null, null, 10, 2);
-        System.out.println(ticketDao.findAll(filter));
+        System.out.println(ticketDao.findAllByFlightId(6L));
 
+//        var flightDao = FlightDao.getInstance();
+//
+//        for (var flight : flightDao.findAll()) {
+//            System.out.println(flight);
+//        }
+
+
+
+//        var ticketDao = TicketDao.getInstance();
+//        var filter = new TicketFilter(null, null, 10, 2);
+//        System.out.println(ticketDao.findAll(filter));
 
 
 
@@ -20,6 +31,7 @@ public class JdbcRunner {
 //        System.out.println(ticket);
 
 //        System.out.println(ticketDao.findById(16L)); //Тут 16 id нет и выдает ошибку при использовании .get()
+
 //        ticket.setSeat_number("546B");
 //        System.out.println(ticketDao.update(ticket));
 //        System.out.println(ticket);
