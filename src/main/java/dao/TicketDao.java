@@ -21,13 +21,13 @@ public class TicketDao implements Dao<Long, Ticket> {
     private final static FlightDao flightDao = FlightDao.getInstance();
     private final static String SAVE_SQL =
             """
-            INSERT INTO ticket (passport_number, passenger_name, flight_id, seat_number, cost) 
+            INSERT INTO tickets (passport_number, passenger_name, flight_id, seat_number, cost) 
             VALUES (?, ?, ?, ?, ?)
             """;
 
     private final static String UPDATE_SQL =
             """
-            UPDATE ticket
+            UPDATE tickets
             SET passport_number = ?,
                 passenger_name = ?,
                 flight_id = ?,
@@ -38,7 +38,7 @@ public class TicketDao implements Dao<Long, Ticket> {
 
     private final static String DELETE_SQL =
             """
-            DELETE FROM ticket
+            DELETE FROM tickets
             Where id = ?
             """;
 
@@ -47,7 +47,7 @@ public class TicketDao implements Dao<Long, Ticket> {
             SELECT t.id, t.passport_number, t.passenger_name, t.flight_id, t.seat_number, t.cost,
                    f.flight_number, f.departure_date, f.departure_airport_code,
                    f.arrival_date, f.arrival_airport_code, f.aircraft_id, f.status
-            FROM ticket t
+            FROM tickets t
             JOIN flights f on f.id = t.flight_id
             """;
 
