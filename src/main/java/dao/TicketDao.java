@@ -21,7 +21,7 @@ public class TicketDao implements Dao<Long, Ticket> {
     private final static FlightDao flightDao = FlightDao.getInstance();
     private final static String SAVE_SQL =
             """
-            INSERT INTO tickets (passport_number, passenger_name, flight_id, seat_number, cost) 
+            INSERT INTO tickets (passport_number, passenger_name, flight_id, seat_number, cost)
             VALUES (?, ?, ?, ?, ?)
             """;
 
