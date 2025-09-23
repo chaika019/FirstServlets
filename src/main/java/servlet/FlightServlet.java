@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 @WebServlet("/flights")
 public class FlightServlet extends HttpServlet {
-    private final FlightService flightService = FlightService.getINSTANCE();
+    private final FlightService flightService = FlightService.getInstance();
 
 
     @Override
