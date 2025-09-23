@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightService {
-    private final static FlightService INSTANCE = new FlightService();
+    private static FlightService instance = new FlightService();
 
     private final FlightDao flightDao = FlightDao.getInstance();
     public List<FlightDto> findAll() {
@@ -22,8 +22,8 @@ public class FlightService {
                         ))).collect(Collectors.toList());
     }
 
-    public static FlightService getINSTANCE() {
-        return INSTANCE;
+    public static FlightService getInstance() {
+        return instance;
     }
 
     private FlightService() {
