@@ -1,4 +1,4 @@
-package logic;
+package logic_DontOpen_Trash;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
