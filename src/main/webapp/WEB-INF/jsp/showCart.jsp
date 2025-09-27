@@ -11,7 +11,7 @@
     <title>Show cart</title>
 </head>
 <body>
-    <%@ page import="logic.Cart.Cart" %>
+    <%@ page import="logic_DontOpen_Trash.Cart.Cart" %>
 
     <% Cart cart = (Cart) session.getAttribute("cart"); %>
 
