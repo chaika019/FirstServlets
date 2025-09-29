@@ -38,6 +38,7 @@ public class RegistrationServlet extends HttpServlet {
         var userDto = CreateUserDto.builder()
                 .name(req.getParameter("name"))
                 .birthday(req.getParameter("birthday"))
+                .email(req.getParameter("email"))
                 .password(req.getParameter("pwd"))
                 .role(req.getParameter("role"))
                 .gender(req.getParameter("gender"))
@@ -45,10 +46,16 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userDto);
-            resp.sendRedirect(("/login"));
+            System.out.println("User created successfully, redirecting to login"); // отладка
+            resp.sendRedirect("/login");
         } catch (ValidationException e) {
+            System.out.println("Validation errors: " + e.getErrors()); // отладка
             req.setAttribute("errors", e.getErrors());
             doGet(req, resp);
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage()); // отладка
+            e.printStackTrace();
+            // Обработка других исключений
         }
     }
 }
