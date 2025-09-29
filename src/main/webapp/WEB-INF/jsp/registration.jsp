@@ -20,7 +20,7 @@
         <input type="date" name="birthday" id="birthday">
     </label><br/>
     <label for="email">Email:
-        <input type="text" name="email" id="email">
+        <input type="email" name="email" id="email">
     </label><br/>
     <label for="pwd">Password:
         <input type="password" name="pwd" id="pwd">
