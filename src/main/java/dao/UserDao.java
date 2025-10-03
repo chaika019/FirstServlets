@@ -1,10 +1,16 @@
 package dao;
 
+import entity.Gender;
+import entity.Role;
 import entity.User;
+import exception.DaoException;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import utils.ConnectionManager;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +23,40 @@ public class UserDao implements Dao<Long, User> {
 
     private static final String SAVE_SQL =
             "INSERT INTO users (name, birthday, email, password, role, gender) VALUES (?, ?, ?, ?, ?, ?)";
+
+    private static final String GET_BY_EMAIL_AND_PASSWORD_SQL =
+            "SELECT * FROM users WHERE email = ? AND password = ?";
+
+    @SneakyThrows
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        try (var connection = ConnectionManager.get();
+        var preparedStatement = connection.prepareStatement(GET_BY_EMAIL_AND_PASSWORD_SQL)) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+
+            var resultSet = preparedStatement.executeQuery();
+            User user = null;
+            if (resultSet.next()) {
+                user = buildEntity(resultSet);
+            }
+
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    private User buildEntity(ResultSet resultSet) throws SQLException {
+        return User.builder()
+                .id(resultSet.getObject("id", Integer.class))
+                .name(resultSet.getObject("name", String.class))
+                .birthday(resultSet.getObject("birthday", Date.class).toLocalDate())
+                .email(resultSet.getObject("email", String.class))
+                .password(resultSet.getObject("password", String.class))
+                .role(Role.find(resultSet.getObject("role", String.class)).orElse(null))
+                .gender(Gender.valueOf(resultSet.getObject("gender", String.class)))
+                .build();
+    }
 
     @Override
     @SneakyThrows

@@ -18,7 +18,7 @@ public class SessionServlet extends HttpServlet {
         var user = session.getAttribute(USER);
         if(user == null) {
             user = UserDto.builder()
-                    .id(5L)
+                    .id(5)
                     .email("chaika@19.com")
                     .build();
         }

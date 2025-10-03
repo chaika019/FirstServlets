@@ -1,11 +1,18 @@
 package dto;
 
+import entity.Gender;
+import entity.Role;
 import lombok.*;
 
-@Data
+import java.time.LocalDate;
+
+@Value
 @Builder
 public class UserDto {
-    private Long id;
-    private String email;
-
+    Integer id;
+    String name;
+    LocalDate birthday;
+    String email;
+    Role role;
+    Gender gender;
 }

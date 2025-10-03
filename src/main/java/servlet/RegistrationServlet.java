@@ -11,11 +11,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.UserService;
 import utils.JspHelper;
+import utils.UrlPath;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet("/registration")
+import static utils.UrlPath.REGISTRATION;
+
+@WebServlet(REGISTRATION)
 public class RegistrationServlet extends HttpServlet {
     private final UserService userService = UserService.getInstance();
 
@@ -46,16 +49,15 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userDto);
-            System.out.println("User created successfully, redirecting to login"); // отладка
+            System.out.println("User created successfully, redirecting to login");
             resp.sendRedirect("/login");
         } catch (ValidationException e) {
-            System.out.println("Validation errors: " + e.getErrors()); // отладка
+            System.out.println("Validation errors: " + e.getErrors());
             req.setAttribute("errors", e.getErrors());
             doGet(req, resp);
         } catch (Exception e) {
-            System.out.println("Unexpected error: " + e.getMessage()); // отладка
+            System.out.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
-            // Обработка других исключений
         }
     }
 }
