@@ -17,10 +17,5 @@ public class DispatcherServlet extends HttpServlet {
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
         var dispatcher = req.getRequestDispatcher("/flights");
         dispatcher.include(req, resp);
-
-
-//        НЕ будет выводить тег <h1>, т.к. в lightServlet мы установили try with resources
-//        var write = resp.getWriter();
-//        write.write("<h1>DISPATCHER</h1>");
     }
 }

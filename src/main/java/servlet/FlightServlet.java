@@ -24,17 +24,5 @@ public class FlightServlet extends HttpServlet {
 
         req.setAttribute("flights", flightService.findAll());
         req.getRequestDispatcher(JspHelper.getPath("flights")).forward(req, resp);
-
-//        try (var writer = resp.getWriter()) {
-//            writer.write("<h1>Список перелетов:</h1>");
-//            writer.write("<ul>");
-//            flightService.findAll().stream().forEach(flightDto ->
-//                    writer.write("""
-//                            <li>
-//                            <a href='/tickets?flightId=%d'>%s</a>
-//                            </li>
-//                            """.formatted(flightDto.id(), flightDto.description())));
-//            writer.write("</ul>");
-//        }
     }
 }
